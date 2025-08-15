@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <OutputType>Library</OutputType>
+    <ApplicationVersion>1.0.3.0</ApplicationVersion>
+    <UseWPF>true</UseWPF>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+    <Company>TMonaco</Company>
+    <FileVersion>1.0.3.0</FileVersion>
+    <InformationalVersion>1.0.3</InformationalVersion>
+    <Product>TMonaco</Product>
+    <AssemblyTitle>TMonaco</AssemblyTitle>
+    <AssemblyVersion>1.0.3.0</AssemblyVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Configuration>Release</Configuration>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Configuration>Release</Configuration>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.13.0" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3296.44" />
+  </ItemGroup>
+ 
+</Project>
