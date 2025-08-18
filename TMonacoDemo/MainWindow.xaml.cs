@@ -25,11 +25,8 @@ namespace TMonacoDemo
 
         private async void Editor_MonacoIsLoadedChanged(object? sender, EventArgs e)
         {
-            await editor.SetLanguageAsync(TMonaco.MonacoLanguage.Csharp);
-            // SetCustomSuggestAsync,
-            // 获取已经加载的全部程序集
-            var assemblies = AppDomain.CurrentDomain.GetAssemblies();
-            await editor.SetCustomSuggestAsync(assemblies);
+            await editor.SetLanguageAsync(TMonaco.MonacoLanguage.Lua);
+        
 
         }
     }

@@ -138,6 +138,9 @@ public class TMonacoEditor : Microsoft.Web.WebView2.Wpf.WebView2
         string str = await this.ExecuteScriptAsync("wpfUiMonacoEditor.getAction('editor.action.formatDocument').run();");
     }
 
+
+    
+
     /// <summary>
     /// 自定义提示，输入为程序集（多个），解析程序集里面全部的类、属性、方法
     /// </summary>
