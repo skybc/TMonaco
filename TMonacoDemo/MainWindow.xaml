@@ -15,6 +15,6 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
-        <tmonaco:TMonacoEditor x:Name="editor" Grid.Column="1" />
+        <tmonaco:TMonacoEditor x:Name="editor" Grid.Column="1" Grid.Row="1" />
     </Grid>
 </Window>

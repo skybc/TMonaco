@@ -1,12 +1,12 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <link rel="stylesheet"
-          data-name="vs/editor/editor.main"
-          href="./min/vs/editor/editor.main.css" />
+    <link rel="stylesheet" data-name="vs/editor/editor.main" href="./min/vs/editor/editor.main.css" />
     <style>
-        html, body {
+        html,
+        body {
             height: 100%;
             margin: 0;
         }
@@ -16,6 +16,7 @@
         }
     </style>
 </head>
+
 <body>
     <div id="root"></div>
     <script src="./min/vs/loader.js"></script>
@@ -24,5 +25,46 @@
     </script>
     <script src="./min/vs/editor/editor.main.nls.js"></script>
     <script src="./min/vs/editor/editor.main.js"></script>
+
+
+    <script>
+
+
+
+        const wpfUiMonacoEditor = monaco.editor.create(document.querySelector('#root'));
+        window.onresize = () => { wpfUiMonacoEditor.layout(); }
+        monaco.editor.setModelLanguage(wpfUiMonacoEditor.getModel(), 'lua');
+
+        const luaFunctions = [
+            { "$id": "1", "name": "variable_get_global_number", "description": "获取全局变量的数字值。\n            如果变量不存在或类型不匹配，将返回错误信息。", "parameters": ["name"] },
+            { "$id": "1", "name": "variable_set_global_number", "description": "设置全局变量的数字值。", "parameters": ["name", "value"] },
+            { "$id": "1", "name": "variable_get_global_string", "description": "获取全局变量的字符串值。", "parameters": ["name"] },
+            { "$id": "1", "name": "variable_set_global_string", "description": "写入全局变量的字符串值。", "parameters": ["name", "value"] },
+        ];
+        monaco.languages.registerCompletionItemProvider('lua', {
+            provideCompletionItems: (model, position) => {
+                const wordInfo = model.getWordUntilPosition(position);
+                const range = {
+                    startLineNumber: position.lineNumber,
+                    endLineNumber: position.lineNumber,
+                    startColumn: wordInfo.startColumn,
+                    endColumn: wordInfo.endColumn
+                };
+
+                const suggestions = luaFunctions.map(func => ({
+                    label: func.name,
+                    kind: monaco.languages.CompletionItemKind.Function,
+                    insertText: `${func.name}(${func.parameters.join(', ')})`,
+                    insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+                    documentation: func.description,
+                    range
+                }));
+
+                return { suggestions };
+            }
+        });
+
+    </script>
 </body>
+
 </html>
